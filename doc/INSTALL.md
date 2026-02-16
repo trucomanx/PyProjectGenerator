@@ -1,41 +1,41 @@
-# py-project-generator
+# simple-project-generator
 
 my pypi project generator
 
 
 ## Install from PYPI
 
-The homepage in pipy is https://pypi.org/project/py_project_generator/
+The homepage in pipy is https://pypi.org/project/simple_project_generator/
 
 ```bash
-pip install --upgrade py_project_generator
+pip install --upgrade simple_project_generator
 ```
 
 Using:
 
 ```bash
-py-project-generator
+simple-project-generator
 ```
 
 ## Install from source
-Installing `py-project-generator` program
+Installing `simple-project-generator` program
 
 ```bash
-git clone https://github.com/trucomanx/PyProjectGenerator.git
-cd PyProjectGenerator
+git clone https://github.com/trucomanx/SimpleProjectGenerator.git
+cd SimpleProjectGenerator
 pip install -r requirements.txt
 cd src
 python -m build
-pip install dist/py_project_generator-*.tar.gz
+pip install dist/simple_project_generator-*.tar.gz
 ```
 Using:
 
 ```bash
-py-project-generator
+simple-project-generator
 ```
 
 ## Uninstall
 
 ```bash
-pip uninstall py_project_generator
+pip uninstall simple_project_generator
 ```

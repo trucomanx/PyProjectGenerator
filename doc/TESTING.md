@@ -1,4 +1,4 @@
-# py-project-generator
+# simple-project-generator
 
 my pypi project generator
 
@@ -6,7 +6,7 @@ my pypi project generator
 
 ```bash
 cd src
-python3 -m py_project_generator.program
+python3 -m simple_project_generator.program
 ```
 
 

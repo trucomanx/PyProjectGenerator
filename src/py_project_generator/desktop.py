@@ -1,7 +1,7 @@
 import os
 import subprocess
-import py_project_generator.about as about
-from py_project_generator.modules.resources import resource_path
+import simple_project_generator.about as about
+from simple_project_generator.modules.resources import resource_path
 
 
 def update_desktop_database(desktop_path):

@@ -129,7 +129,7 @@ def generate_project(
 
 if __name__ == '__main__':
 
-    temp_path = extract_zip_to_temp("/home/fernando/Downloads/codigo/py_project_generator/pyqt5_project_template_1.zip")
+    temp_path = extract_zip_to_temp("/home/fernando/Downloads/codigo/simple_project_generator/pyqt5_project_template_1.zip")
     
     if temp_path:
         try:
@@ -137,13 +137,13 @@ if __name__ == '__main__':
                 template_dir=temp_path,
                 output_dir="output",
                 replacements={
-                    "{MODULE_NAME}": "py_project_generator",
-                    "{PROGRAM_NAME}": "py-project-generator",
+                    "{MODULE_NAME}": "simple_project_generator",
+                    "{PROGRAM_NAME}": "simple-project-generator",
                     "{AUTHOR_NAME}": "Fernando Pujaico Rivera",
                     "{AUTHOR_EMAIL}": "fernando.pujaico.rivera@gmail.com",
                     "{SUMMARY}": "my pypi project generator",
                     "{REPOSITORY_PAGE}": "https://github.com/trucomanx",
-                    "{REPOSITORY_NAME}": "PyProjectGenerator",
+                    "{REPOSITORY_NAME}": "SimpleProjectGenerator",
                     "{FUNDING_PAGE}": "https://trucomanx.github.io/en/funding.html",
                     "{BUY_ME_A_COFFEE}": "https://ko-fi.com/trucomanx",
                     "{REPOSITORY_RAW_PAGE}": "https://raw.githubusercontent.com/trucomanx",

@@ -1,7 +1,7 @@
 #!/bin/bash
 
-PROJECT_NAME="PyProjectGenerator"
-PACKAGE_NAME="py_project_generator"
+PROJECT_NAME="SimpleProjectGenerator"
+PACKAGE_NAME="simple_project_generator"
 PACKAGE_PARENT_PATH="../src"
 DOCS_PATH="./tmp-out"
 

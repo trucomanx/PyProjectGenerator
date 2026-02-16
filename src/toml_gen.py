@@ -7,7 +7,7 @@ import sys
 here = pathlib.Path(__file__).parent.resolve()
 sys.path.insert(0, str(here))
 
-from py_project_generator.about import (
+from simple_project_generator.about import (
     __version__,
     __package__,
     __program_name__,
@@ -45,8 +45,7 @@ license = "GPL-3.0-only WITH Classpath-Exception-2.0 OR BSD-3-Clause"
 license-files = ["LICENSE"]
 keywords = ["writing", "translate"]
 dependencies = [
-    "PyQt5",
-    "deep-consultation"
+    "PyQt5"
 ]
 
 [project.urls]
@@ -62,7 +61,7 @@ dependencies = [
 packages = ["{__package__}", "{__package__}.modules"]
 
 [tool.setuptools.package-data]
-"{__package__}" = ["icons/logo.png"]
+"{__package__}" = ["icons/logo.png", "data/pyqt5_project_template_1.zip"]
 """
 
 # Escreve o pyproject.toml

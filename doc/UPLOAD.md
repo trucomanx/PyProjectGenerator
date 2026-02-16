@@ -1,4 +1,4 @@
-# py-project-generator
+# simple-project-generator
 
 my pypi project generator
 
@@ -11,3 +11,4 @@ cd src
 python -m build
 twine upload dist/*
 ```
+

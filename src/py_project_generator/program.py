@@ -14,18 +14,18 @@ from PyQt5.QtWidgets import (
 from PyQt5.QtCore import Qt, QUrl
 from PyQt5.QtGui import QIcon, QDesktopServices
 
-import py_project_generator.about as about
-import py_project_generator.modules.configure as configure
-from py_project_generator.modules.resources import resource_path
+import simple_project_generator.about as about
+import simple_project_generator.modules.configure as configure
+from simple_project_generator.modules.resources import resource_path
 
-from py_project_generator.modules.wabout import show_about_window
-from py_project_generator.desktop import (
+from simple_project_generator.modules.wabout import show_about_window
+from simple_project_generator.desktop import (
     create_desktop_file,
     create_desktop_directory,
     create_desktop_menu
 )
 
-from py_project_generator.modules.project_generator import (
+from simple_project_generator.modules.project_generator import (
     extract_zip_to_temp,
     generate_project
 )
@@ -328,13 +328,47 @@ class MainWindow(QMainWindow):
             QMessageBox.warning(self, "Error", CONFIG["msg_invalid_template"])
             return
 
-        replacements = {
-            key: field.text()
-            for key, field in self.fields.items()
-        }
+        # ---------------- Clean + Validate fields ----------------
+        replacements = {}
+        empty_fields = []
 
-        output_dir = self.output_dir_input.text()
+        for key, field in self.fields.items():
+            value = field.text().strip()
 
+            if not value:
+                empty_fields.append(CONFIG["fields"][key]["label"])
+
+            replacements[key] = value
+
+        if empty_fields:
+            QMessageBox.warning(
+                self,
+                "Missing fields",
+                "The following fields cannot be empty:\n\n"
+                + "\n".join(empty_fields)
+            )
+            return
+
+        # ---------------- Validate output directory ----------------
+        output_dir = self.output_dir_input.text().strip()
+
+        if not output_dir:
+            QMessageBox.warning(
+                self,
+                "Missing output directory",
+                "Please select an output directory."
+            )
+            return
+
+        if not os.path.isdir(output_dir):
+            QMessageBox.warning(
+                self,
+                "Invalid directory",
+                "The selected output directory is not valid."
+            )
+            return
+
+        # ---------------- Extract template ----------------
         temp_path = extract_zip_to_temp(template_path)
 
         if not temp_path:
@@ -349,6 +383,7 @@ class MainWindow(QMainWindow):
                 replace_extensions=["*.py", "*.md", "*.sh"],
                 overwrite=True
             )
+
             QMessageBox.information(self, "Success", CONFIG["msg_success"])
 
         except Exception as e:
@@ -356,6 +391,7 @@ class MainWindow(QMainWindow):
 
         finally:
             shutil.rmtree(temp_path, ignore_errors=True)
+
 
     # ---------------- Save / Load ----------------
 
@@ -445,6 +481,27 @@ class MainWindow(QMainWindow):
 def main():
     signal.signal(signal.SIGINT, signal.SIG_DFL)
 
+    create_desktop_directory()    
+    create_desktop_menu()
+    create_desktop_file(os.path.join("~",".local","share","applications"), 
+                        program_name=about.__program_name__)
+    
+    for n in range(len(sys.argv)):
+        if sys.argv[n] == "--autostart":
+            create_desktop_directory(overwrite = True)
+            create_desktop_menu(overwrite = True)
+            create_desktop_file(os.path.join("~",".config","autostart"), 
+                                overwrite=True, 
+                                program_name=about.__program_name__)
+            return
+        if sys.argv[n] == "--applications":
+            create_desktop_directory(overwrite = True)
+            create_desktop_menu(overwrite = True)
+            create_desktop_file(os.path.join("~",".local","share","applications"), 
+                                overwrite=True, 
+                                program_name=about.__program_name__)
+            return
+    
     app = QApplication(sys.argv)
     app.setApplicationName(about.__package__)
 

@@ -18,14 +18,14 @@ cd src
 
 
 ## ubuntu ##
-python3 -m PyInstaller --onefile --windowed --name py_project_generator --add-data "py_project_generator/icons:icons" --collect-all PyQt5  program_launcher.py
+python3 -m PyInstaller --onefile --windowed --name simple_project_generator --add-data "simple_project_generator/icons:icons" --add-data "simple_project_generator/data:data" --collect-all PyQt5  program_launcher.py
 
 ## windows ##
-python -m PyInstaller --onefile --windowed --name py_project_generator --add-data "py_project_generator/icons;icons" --collect-all PyQt5  program_launcher.py
+python -m PyInstaller --onefile --windowed --name simple_project_generator --add-data "simple_project_generator/icons;icons" --add-data "simple_project_generator/data;data" --collect-all PyQt5  program_launcher.py
 
 '''
 
-from py_project_generator.program import main
+from simple_project_generator.program import main
 
 if __name__ == "__main__":
     main()

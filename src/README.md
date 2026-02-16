@@ -2,7 +2,7 @@
 
 my pypi project generator
 
-![logo](screenshot.png)
+![logo](https://raw.githubusercontent.com/trucomanx/PyProjectGenerator/main/screenshot.png)
 
 ## 1. Installing
 
@@ -24,7 +24,7 @@ py-project-generator
 ```
 ## 2. More information
 
-If you want more information go to [doc](https://github.com/trucomanx/PyProjectGenerator/blob/main/doc) directory
+If you want more information go to [doc](https://github.com/trucomanx/PyProjectGenerator/blob/main/doc) directory.
 
 ## 3. Buy me a coffee
 

@@ -74,8 +74,12 @@ def generate_project(
     if not template_path.exists():
         raise FileNotFoundError("Template directory not found")
 
-    if overwrite==False and output_path.exists():
-        raise FileExistsError("Output directory already exists")
+    # 🔥 CORREÇÃO DO OVERWRITE
+    if output_path.exists():
+        if overwrite:
+            shutil.rmtree(output_path)
+        else:
+            raise FileExistsError("Output directory already exists")
 
     for item in template_path.rglob("*"):
 
@@ -111,11 +115,17 @@ def generate_project(
         else:
             shutil.copy2(item, new_path)
 
+    # 🔥 CORREÇÃO DO RENAME
     old_path = output_path / "src" / "__MODULE_NAME__"
     new_path = output_path / "src" / replacements["{MODULE_NAME}"]
-    old_path.rename(new_path)
+
+    if old_path.exists():
+        if new_path.exists():
+            shutil.rmtree(new_path)
+        old_path.rename(new_path)
 
     print(f"Projeto gerado em: {output_path}")
+
 
 if __name__ == '__main__':
 
